@@ -3,6 +3,7 @@ package io.github.prittspadelord;
 import io.github.prittspadelord.config.SpringAppConfig;
 
 import io.github.prittspadelord.models.Character;
+
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 

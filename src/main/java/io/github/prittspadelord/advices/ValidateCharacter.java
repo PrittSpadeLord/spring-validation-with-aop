@@ -48,8 +48,7 @@ public class ValidateCharacter implements MethodInterceptor {
             return invocation.proceed();
         }
         else {
-            //WIP
-            return null;
+            throw new IllegalArgumentException("Argument failed validation check");
         }
     }
 }
