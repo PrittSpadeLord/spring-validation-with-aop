@@ -19,7 +19,7 @@ import java.util.Set;
 @Component
 public class ValidateCharacter implements MethodInterceptor {
 
-    private Validator validator;
+    private final Validator validator;
     private static final Logger LOG = LoggerFactory.getLogger(ValidateCharacter.class);
 
     public ValidateCharacter(@Autowired Validator validator) {
@@ -29,17 +29,7 @@ public class ValidateCharacter implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
 
-        Object[] args = invocation.getArguments();
-
-        if(args.length != 1) {
-            throw new IllegalArgumentException("Incorrect amount of arguments. Expected " + 1 + ", but found " + args.length + ".");
-        }
-
-        if(!Character.class.equals(args[0].getClass())) {
-            throw new IllegalArgumentException("Incorrect argument type, expected " + Character.class.getName() + ", but found " + args[0].getClass().getName() + ".");
-        }
-
-        Character character = (Character) args[0];
+        Character character = ValidateCharacter.getCharacter(invocation);
 
         Set<ConstraintViolation<Character>> violations = validator.validate(character);
 
@@ -50,5 +40,19 @@ public class ValidateCharacter implements MethodInterceptor {
         else {
             throw new IllegalArgumentException("Argument failed validation check");
         }
+    }
+
+    private static Character getCharacter(MethodInvocation invocation) {
+        Object[] args = invocation.getArguments();
+
+        if(args.length != 1) {
+            throw new IllegalArgumentException("Incorrect amount of arguments. Expected " + 1 + ", but found " + args.length + ".");
+        }
+
+        if(!Character.class.equals(args[0].getClass())) {
+            throw new IllegalArgumentException("Incorrect argument type, expected " + Character.class.getName() + ", but found " + args[0].getClass().getName() + ".");
+        }
+
+        return (Character) args[0];
     }
 }

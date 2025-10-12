@@ -1,16 +1,14 @@
-package io.github.prittspadelord.service;
+package io.github.prittspadelord.services.impl;
 
 import io.github.prittspadelord.models.Character;
+import io.github.prittspadelord.services.GenshinDatabaseService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.stereotype.Service;
+public class GenshinDatabaseServiceImpl implements GenshinDatabaseService {
 
-@Service
-public class GenshinDatabaseService {
-
-    private static final Logger LOG = LoggerFactory.getLogger(GenshinDatabaseService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(GenshinDatabaseServiceImpl.class);
 
     public void insertCharacter(Character character) {
 

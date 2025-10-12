@@ -4,6 +4,7 @@ import io.github.prittspadelord.config.SpringAppConfig;
 
 import io.github.prittspadelord.models.Character;
 
+import io.github.prittspadelord.services.GenshinDatabaseService;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 
@@ -21,5 +22,9 @@ public class SpringValidationWithAopApplication {
         character.setName("Chiori");
         character.setElement("geo");
         character.setNation("inazuma");
+
+        GenshinDatabaseService service = context.getBean(GenshinDatabaseService.class);
+
+        service.insertCharacter(character);
     }
 }
