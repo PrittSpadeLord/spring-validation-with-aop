@@ -1,8 +1,8 @@
 package io.github.prittspadelord.config;
 
-import io.github.prittspadelord.advices.ValidateCharacter;
 import io.github.prittspadelord.services.GenshinDatabaseService;
 import io.github.prittspadelord.services.impl.GenshinDatabaseServiceImpl;
+
 import jakarta.validation.Validator;
 
 import org.aopalliance.aop.Advice;

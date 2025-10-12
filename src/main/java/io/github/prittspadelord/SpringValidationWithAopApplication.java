@@ -1,17 +1,13 @@
 package io.github.prittspadelord;
 
 import io.github.prittspadelord.config.SpringAppConfig;
-
 import io.github.prittspadelord.models.Character;
-
 import io.github.prittspadelord.services.GenshinDatabaseService;
-import jakarta.validation.ConstraintViolation;
+
 import jakarta.validation.Validator;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.Set;
 
 public class SpringValidationWithAopApplication {
     static void main() {
