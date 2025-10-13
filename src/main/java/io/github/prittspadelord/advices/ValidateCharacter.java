@@ -1,6 +1,6 @@
 package io.github.prittspadelord.advices;
 
-import io.github.prittspadelord.models.Character;
+import io.github.prittspadelord.models.GenshinCharacter;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
@@ -20,8 +20,9 @@ import java.util.Set;
 @Component
 public class ValidateCharacter implements MethodInterceptor {
 
-    private final Validator validator;
     private static final Logger LOG = LoggerFactory.getLogger(ValidateCharacter.class);
+
+    private final Validator validator;
 
     public ValidateCharacter(@Autowired Validator validator) {
         this.validator = validator;
@@ -30,12 +31,12 @@ public class ValidateCharacter implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
 
-        Character character = ValidateCharacter.getCharacter(invocation);
+        GenshinCharacter character = ValidateCharacter.getCharacter(invocation);
 
-        Set<ConstraintViolation<Character>> violations = validator.validate(character);
+        Set<ConstraintViolation<GenshinCharacter>> violations = validator.validate(character);
 
         if(violations.isEmpty()) {
-            LOG.info("Validation check passed");
+            LOG.info("Character has been validated successfully!");
             return invocation.proceed();
         }
         else {
@@ -45,17 +46,17 @@ public class ValidateCharacter implements MethodInterceptor {
         }
     }
 
-    private static Character getCharacter(MethodInvocation invocation) {
+    private static GenshinCharacter getCharacter(MethodInvocation invocation) {
         Object[] args = invocation.getArguments();
 
         if(args.length != 1) {
-            throw new IllegalArgumentException("Incorrect amount of arguments. Expected " + 1 + ", but found " + args.length + ".");
+            throw new IllegalArgumentException("Incorrect amount of arguments: Expected " + 1 + ", but found " + args.length + ".");
         }
 
-        if(!Character.class.equals(args[0].getClass())) {
-            throw new IllegalArgumentException("Incorrect argument type, expected " + Character.class.getName() + ", but found " + args[0].getClass().getName() + ".");
+        if(!GenshinCharacter.class.equals(args[0].getClass())) {
+            throw new IllegalArgumentException("Incorrect argument type: Expected " + GenshinCharacter.class.getName() + ", but found " + args[0].getClass().getName() + ".");
         }
 
-        return (Character) args[0];
+        return (GenshinCharacter) args[0];
     }
 }

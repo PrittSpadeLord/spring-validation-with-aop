@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Character {
+public class GenshinCharacter {
     @Pattern(regexp = "[a-zA-Z ]+") private String name;
     @Pattern(regexp = "anemo|geo|electro|dendro|hydro|pyro|cryo") private String element;
     @Pattern(regexp = "mondstadt|liyue|inazuma|sumeru|fontaine|natlan|nod_krai|snezhnaya") private String nation;

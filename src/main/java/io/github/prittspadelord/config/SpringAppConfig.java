@@ -6,6 +6,7 @@ import io.github.prittspadelord.services.impl.GenshinDatabaseServiceImpl;
 import jakarta.validation.Validator;
 
 import org.aopalliance.aop.Advice;
+
 import org.apache.bval.jsr.ApacheValidationProvider;
 
 import org.springframework.aop.Advisor;
@@ -19,9 +20,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @Configuration
-@ComponentScan(basePackages = {
-        "io.github.prittspadelord.advices"
-})
+@ComponentScan(basePackages = "io.github.prittspadelord.advices")
 public class SpringAppConfig {
     @Bean
     public LocalValidatorFactoryBean localValidatorFactoryBean() {
@@ -37,7 +36,7 @@ public class SpringAppConfig {
     }
 
     @Bean
-    public Advisor insertCharacterMethodPointcutAdvisor(@Autowired Advice advice) {
+    public Advisor validateCharacterForInsertCharacterMethodPointcutAdvisor(@Autowired Advice advice) {
         NameMatchMethodPointcutAdvisor advisor = new NameMatchMethodPointcutAdvisor();
         advisor.setAdvice(advice);
         advisor.addMethodName("insertCharacter");

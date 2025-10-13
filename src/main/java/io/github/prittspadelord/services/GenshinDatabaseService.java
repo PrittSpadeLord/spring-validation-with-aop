@@ -1,7 +1,7 @@
 package io.github.prittspadelord.services;
 
-import io.github.prittspadelord.models.Character;
+import io.github.prittspadelord.models.GenshinCharacter;
 
 public interface GenshinDatabaseService {
-    public void insertCharacter(Character character);
+    public void insertCharacter(GenshinCharacter character);
 }
