@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -38,7 +39,9 @@ public class ValidateCharacter implements MethodInterceptor {
             return invocation.proceed();
         }
         else {
-            throw new IllegalArgumentException("Argument failed validation check");
+            List<String> errors = violations.stream().map(ConstraintViolation::getMessage).toList();
+
+            throw new ValidationException("Argument failed validation check", errors);
         }
     }
 

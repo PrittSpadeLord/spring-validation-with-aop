@@ -4,15 +4,12 @@ import io.github.prittspadelord.config.SpringAppConfig;
 import io.github.prittspadelord.models.Character;
 import io.github.prittspadelord.services.GenshinDatabaseService;
 
-import jakarta.validation.Validator;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class SpringValidationWithAopApplication {
     static void main() {
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringAppConfig.class);
-        Validator validator = context.getBean(Validator.class);
 
         Character character = new Character();
         character.setName("Chiori");
