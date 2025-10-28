@@ -17,8 +17,8 @@
         <apache.bval.version>3.0.2</apache.bval.version>
         <lombok.version>1.18.42</lombok.version>
         <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
-        <slf4j.version>2.0.17</slf4j.version>
         <logback.version>1.5.19</logback.version>
+        <owasp.dependency.check.version>12.1.8</owasp.dependency.check.version>
     </properties>
 
     <dependencies>
@@ -47,12 +47,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
@@ -77,6 +71,22 @@
                     <target>${maven.compiler.target}</target>
                     <useIncrementalCompilation>true</useIncrementalCompilation>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>${owasp.dependency.check.version}</version>
+                <configuration>
+                    <nvdApiKeyEnvironmentVariable>NVD_API_KEY</nvdApiKeyEnvironmentVariable>
+                    <failBuildOnCVSS>7</failBuildOnCVSS>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
