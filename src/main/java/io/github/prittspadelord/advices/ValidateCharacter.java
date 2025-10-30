@@ -5,11 +5,10 @@ import io.github.prittspadelord.models.GenshinCharacter;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,10 +16,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
 @Component
 public class ValidateCharacter implements MethodInterceptor {
-
-    private static final Logger LOG = LoggerFactory.getLogger(ValidateCharacter.class);
 
     private final Validator validator;
 
@@ -36,7 +34,7 @@ public class ValidateCharacter implements MethodInterceptor {
         Set<ConstraintViolation<GenshinCharacter>> violations = validator.validate(character);
 
         if(violations.isEmpty()) {
-            LOG.info("Character has been validated successfully!");
+            log.info("Character has been validated successfully!");
             return invocation.proceed();
         }
         else {
