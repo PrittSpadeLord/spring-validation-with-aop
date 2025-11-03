@@ -13,8 +13,9 @@
         <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.framework.version>6.2.11</spring.framework.version>
-        <jakarta.validation.version>3.0.2</jakarta.validation.version>
-        <apache.bval.version>3.0.2</apache.bval.version>
+        <jakarta.validation.version>3.1.1</jakarta.validation.version>
+        <hibernate.validator.version>9.0.1.Final</hibernate.validator.version>
+        <jakarta.el.version>4.0.2</jakarta.el.version>
         <lombok.version>1.18.42</lombok.version>
         <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
         <logback.version>1.5.19</logback.version>
@@ -35,9 +36,15 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.bval</groupId>
-            <artifactId>bval-jsr</artifactId>
-            <version>${apache.bval.version}</version>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate.validator.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.el</artifactId>
+            <version>${jakarta.el.version}</version>
         </dependency>
 
         <dependency>
